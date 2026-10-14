@@ -111,3 +111,25 @@ Lina Venckus(Venckuviene)
 Computer Science Graduate
 
 Atlantic Technological University (ATU)
+
+## Project Screenshots
+
+The following screenshots demonstrate the AWS configuration, testing, and successful execution of this serverless application.
+
+### 1. DynamoDB Records
+![DynamoDB Records](screenshots/dynamodb_records.png)
+
+### 2. Successful S3 File Upload
+![S3 Upload Success](screenshots/s3_upload_success.png)
+
+### 3. AWS Lambda S3 Triggers
+![Lambda S3 Triggers](screenshots/lambda_s3_triggers.png)
+
+### 4. CloudWatch Execution Logs
+![CloudWatch Logs](screenshots/cloudwatch_execution_logs.png)
+
+### 5. S3 Bucket Versioning
+![S3 Versioning](screenshots/s3_versioning.png)
+
+### 6. S3 Lifecycle Rule
+![S3 Lifecycle Rule](screenshots/s3_lifecycle_rule.png)
