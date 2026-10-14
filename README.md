@@ -18,15 +18,26 @@ The system automatically reacts to file uploads and deletions in an S3 bucket. A
 
 ## Architecture
 
-S3 Bucket
-↓
-Lambda Trigger
-↓
-AWS Lambda Function
-↓
-DynamoDB Table
-↓
-CloudWatch Logs
+The application uses an event-driven, serverless architecture.
+
+1. A file is uploaded to or deleted from an Amazon S3 bucket.
+2. Amazon S3 triggers an AWS Lambda function.
+3. The Lambda function processes the event using Python.
+4. The function stores event information in Amazon DynamoDB.
+5. AWS CloudWatch Logs captures Lambda execution logs for monitoring and troubleshooting.
+
+### Architecture Flow
+
+```text
+Amazon S3 (Upload / Delete)
+          |
+          v
+AWS Lambda (Python)
+          |
+          +----> Amazon DynamoDB (Event Records)
+          |
+          +----> Amazon CloudWatch Logs (Execution Logs)
+```
 
 ## Features Implemented
 
