@@ -70,8 +70,15 @@ The Lambda function reads this value using Python's `os.environ` instead of hard
 
 ### IAM Permissions
 
-- AmazonDynamoDBFullAccess
-- Lambda execution role
+The original university assignment used the `AmazonDynamoDBFullAccess` managed policy for DynamoDB access.
+
+For a production environment, a more secure approach is to follow the **principle of least privilege**:
+
+- Allow `dynamodb:PutItem` on the specific DynamoDB table.
+- Allow CloudWatch Logs permissions for Lambda execution logging.
+- Avoid granting unnecessary access to other DynamoDB tables.
+
+The Lambda execution role must have the required permissions to write records to DynamoDB and send logs to CloudWatch.
 
 ### CloudWatch Monitoring
 
