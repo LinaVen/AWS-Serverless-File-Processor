@@ -1,10 +1,11 @@
 import boto3
 from datetime import datetime
 import uuid
+import os
 
 s3_client = boto3.client('s3')
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('DynamoDB-table-s00274687')
+table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
 def lambda_handler(event, context):
     for record in event['Records']:
