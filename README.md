@@ -45,20 +45,21 @@ AWS Lambda (Python)
 
 - Table: DynamoDB-table-s00274687
 - Partition Key: id
-- Stores uploaded file information
+- Stores file event information, including uploads and deletions
 
 ### Amazon S3
 
 - Bucket: assignment2-s00274687
-- Stores uploaded files
-- Triggers Lambda automatically
+- Stores files uploaded to the S3 bucket
+- Triggers AWS Lambda when files are uploaded or deleted
 
 ### AWS Lambda
 
 - Function: assignment2Processor
 - Python runtime
-- Processes S3 events
-- Writes records to DynamoDB
+- Processes Amazon S3 upload and deletion events
+- Extracts file metadata, including filename, file size, file type, and event timestamp
+- Stores event records in Amazon DynamoDB
 
 ### Lambda Environment Variables
 
@@ -101,14 +102,14 @@ The Lambda execution role must have the required permissions to write records to
 
 ### Delete Event Processing
 
-A second trigger was configured to detect file deletions.
+An additional Amazon S3 trigger was configured to detect file deletion events.
 
-Lambda records:
+The AWS Lambda function records the following event types in Amazon DynamoDB:
 
-- ObjectCreated:Put
-- ObjectRemoved:Delete
+- `ObjectCreated:Put` — when a file is uploaded.
+- `ObjectRemoved:Delete` — when a file is deleted.
 
-events in DynamoDB.
+Each event record includes information about the file and the type of operation performed.
 
 ### S3 Versioning
 
@@ -124,29 +125,28 @@ Lifecycle rule: DeleteOldFiles
 
 ## Python Technologies Used
 
-- boto3
-- datetime
-- uuid
+- `boto3` — AWS SDK for Python, used to interact with DynamoDB.
+- `datetime` — Generates timestamps for file events.
+- `uuid` — Generates unique identifiers for DynamoDB records.
+- `os` — Reads the DynamoDB table name from an environment variable.
 
 ## Learning Outcomes
 
-This project demonstrates practical experience with:
+This project demonstrates practical experience in:
 
-- Serverless Computing
-- Event Driven Architecture
-- AWS Lambda
-- DynamoDB
-- CloudWatch Monitoring
-- IAM Security
-- Python Development
-- Cloud Automation
+- Developing serverless applications using AWS Lambda and Python.
+- Implementing event-driven workflows with Amazon S3.
+- Processing file events and storing metadata in Amazon DynamoDB.
+- Monitoring application execution using Amazon CloudWatch Logs.
+- Configuring AWS IAM permissions and understanding the principle of least privilege.
+- Managing S3 versioning and lifecycle rules for data protection and cost optimisation.
+- Using Python and Boto3 to integrate AWS services.
 
 ## Author
 
-Lina Venckus(Venckuviene)
+**Lina Venckus (Venckuviene)**
 
 Computer Science Graduate
-
 Atlantic Technological University (ATU)
 
 ## Project Screenshots
