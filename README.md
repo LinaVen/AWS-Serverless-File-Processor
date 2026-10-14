@@ -49,6 +49,25 @@ CloudWatch Logs
 - Processes S3 events
 - Writes records to DynamoDB
 
+### Lambda Environment Variables
+
+The Lambda function uses an environment variable to identify the DynamoDB table.
+
+Configure the following environment variable in the AWS Lambda console:
+
+- **Variable name:** `DYNAMODB_TABLE`
+- **Example value:** `DynamoDB-table-s00274687`
+
+To configure it:
+
+1. Open your Lambda function in the AWS Management Console.
+2. Select **Configuration → Environment variables**.
+3. Click **Edit**.
+4. Add the variable `DYNAMODB_TABLE` with your DynamoDB table name as its value.
+5. Save the changes.
+
+The Lambda function reads this value using Python's `os.environ` instead of hardcoding the table name.
+
 ### IAM Permissions
 
 - AmazonDynamoDBFullAccess
